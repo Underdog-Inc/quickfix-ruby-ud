@@ -12,15 +12,15 @@ public:
 
   ~MySQLQuery() {}
 
-  bool execute(MYSQL *pConnection) { unreachable(); }
+  bool execute(MYSQL *pConnection) { throw std::logic_error("Unreachable code reached!"); }
 
-  bool success() { unreachable(); };
+  bool success() { throw std::logic_error("Unreachable code reached!"); };
 
-  int rows() { unreachable(); }
+  int rows() { throw std::logic_error("Unreachable code reached!"); }
 
-  const std::string &reason() { unreachable(); }
+  const std::string &reason() { throw std::logic_error("Unreachable code reached!"); }
 
-  char *getValue(int row, int column) { unreachable(); }
+  char *getValue(int row, int column) { throw std::logic_error("Unreachable code reached!"); }
 
   void throwException() EXCEPT(IOException) {}
 };
@@ -40,13 +40,13 @@ public:
 
   ~MySQLConnection() {}
 
-  const DatabaseConnectionID &connectionID() { unreachable(); }
+  const DatabaseConnectionID &connectionID() { throw std::logic_error("Unreachable code reached!"); }
 
-  bool connected() { unreachable(); }
+  bool connected() { throw std::logic_error("Unreachable code reached!"); }
 
-  bool reconnect() { unreachable(); }
+  bool reconnect() { throw std::logic_error("Unreachable code reached!"); }
 
-  bool execute(MySQLQuery &pQuery) { unreachable(); }
+  bool execute(MySQLQuery &pQuery) { throw std::logic_error("Unreachable code reached!"); }
 };
 
 typedef DatabaseConnectionPool<MySQLConnection> MySQLConnectionPool;
@@ -108,17 +108,17 @@ public:
 
   ~MySQLStore() {}
 
-  bool set(SEQNUM, const std::string &) EXCEPT(IOException) { unreachable(); }
+  bool set(SEQNUM, const std::string &) EXCEPT(IOException) { throw std::logic_error("Unreachable code reached!"); }
   void get(SEQNUM, SEQNUM, std::vector<std::string> &) const EXCEPT(IOException) {}
 
-  SEQNUM getNextSenderMsgSeqNum() const EXCEPT(IOException) { unreachable(); }
-  SEQNUM getNextTargetMsgSeqNum() const EXCEPT(IOException) { unreachable(); }
+  SEQNUM getNextSenderMsgSeqNum() const EXCEPT(IOException) { throw std::logic_error("Unreachable code reached!"); }
+  SEQNUM getNextTargetMsgSeqNum() const EXCEPT(IOException) { throw std::logic_error("Unreachable code reached!"); }
   void setNextSenderMsgSeqNum(SEQNUM value) EXCEPT(IOException) {}
   void setNextTargetMsgSeqNum(SEQNUM value) EXCEPT(IOException) {}
   void incrNextSenderMsgSeqNum() EXCEPT(IOException) {}
   void incrNextTargetMsgSeqNum() EXCEPT(IOException) {}
 
-  UtcTimeStamp getCreationTime() const EXCEPT(IOException) { unreachable(); }
+  UtcTimeStamp getCreationTime() const EXCEPT(IOException) { throw std::logic_error("Unreachable code reached!"); }
 
   void reset(const UtcTimeStamp &now) EXCEPT(IOException) {}
   void refresh() EXCEPT(IOException) {}
