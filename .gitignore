@@ -2,3 +2,5 @@
 *.gz
 *.zip
 /quickfix
+.DS_STORE
+.idea
