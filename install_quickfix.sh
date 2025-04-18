@@ -41,7 +41,6 @@ copy_source_files(){
   
   cp quickfix/LICENSE .
   
-#  cp quickfix/src/swig/*.h ext/quickfix
   cp quickfix/src/ruby/quickfix*.rb lib
   cp quickfix/src/C++/*.h ext/quickfix
   cp quickfix/src/C++/*.hpp ext/quickfix
@@ -58,34 +57,6 @@ copy_source_files(){
   rm -f ext/quickfix/stdafx.*
 }
 
-build_native_gem(){
-  rake clean
-  rake clobber
-  rake compile
-  rake native gem 
-  rake package --all
-}
-
-uninstall_old_version(){
-  echo "Uninstalling previous version of the quickfix-ruby gem..."
-  gem uninstall quickfix_ruby
-}
-
-install_local_gem(){
-  echo "Installing quickfix-ruby gem..."
-  openssl_dir=$(pkg-config --variable=prefix openssl)
-  swig_dir=$(realpath "./quickfix-package/quickfix/src/swig")
-  pg_includes_dir=$(pg_config --includedir)
-  cxx_flags="-std=c++20 -DHAVE_SSL=1 -DHAVE_POSTGRESQL=1"
-  cpp_flags="-I$openssl_dir/include -I$swig_dir -I$pg_includes_dir"
-  ld_flags="-L$openssl_dir/lib -lssl -lcrypto"
-  gem_path=./quickfix-package/quickfix-ruby/quickfix_ruby-1.15.1.gem
-  gem install --local $gem_path --verbose -- \
-    --with-cxxflags="$cxx_flags" \
-    --with-ldflags="$ld_flags" \
-    --with-cppflags="$cpp_flags" \
-    --with-openssl-dir=$openssl_dir
-}
 
 cleanup(){
   rm -rf quickfix
@@ -97,14 +68,9 @@ cleanup(){
   rm -rf spec
 }
 
-#bundle install
 cleanup
 install_coreutils
 build_quickfix_source
 copy_source_files
-#build_native_gem
-
-#uninstall_old_version
-#install_local_gem
 rm -rf quickfix
 echo "Done...!"

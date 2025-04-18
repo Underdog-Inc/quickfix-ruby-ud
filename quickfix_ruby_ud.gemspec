@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name        = 'quickfix_ruby_ud'
-  s.version     = '2.0.1'
+  s.version     = '2.0.2'
   s.date        = '2025-04-18'
   s.summary     = "QuickFIX"
   s.description = "FIX (Financial Information eXchange) protocol implementation"
   s.authors     = ["Oren Miller", "Tom Kerr"]
   s.email       = 'tom.kerr@underdogfantasy.com.org'
-  s.files       = Dir.glob("lib/*.rb") + Dir.glob("ext/quickfix/*.*") + Dir.glob("ext/quickfix/double-conversion/*.*") + Dir.glob("spec/FIX*.xml") + Dir.glob("test/*") + Dir.glob("Rakefile") 
+  s.files       = Dir.glob("lib/*.rb") + Dir.glob("ext/quickfix/*.*") + Dir.glob("ext/quickfix/double-conversion/*.*") + Dir.glob("spec/FIX*.xml") + Dir.glob("test/*") 
   s.extensions = %w[ext/quickfix/extconf.rb]
   s.homepage    = 'http://www.quickfixengine.org'
   s.licenses    = 'Apache Style'
