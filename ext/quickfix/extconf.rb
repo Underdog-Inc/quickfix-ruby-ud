@@ -1,26 +1,56 @@
 require 'mkmf'
 require 'open3'
 
-dir_config("quickfix", ["."], ".")
+dir_config('quickfix', ['.'], '.')
 
 # Helpers to fetch config values
 def fetch_pg_includes
-  stdout, _ = Open3.capture2("pg_config --includedir")
+  stdout, _ = Open3.capture2('pg_config --includedir')
   stdout.strip
 end
 
 def fetch_openssl_dir
+  # Allow environment override
+  return ENV['OPENSSL_DIR'] if ENV['OPENSSL_DIR'] && Dir.exist?(ENV['OPENSSL_DIR'])
+
+  # Try pkg-config
   begin
-    stdout, _ = Open3.capture2("pkg-config --variable=prefix openssl")
-    stdout.strip
+    stdout, status = Open3.capture2('pkg-config', '--variable=prefix', 'openssl')
+    return stdout.strip if status.success? && Dir.exist?(stdout.strip)
   rescue Errno::ENOENT
-    stdout, _ = Open3.capture2("brew --prefix openssl")
-    stdout.strip
+    # pkg-config not available
   end
+
+  # Try brew on macOS
+  if RbConfig::CONFIG['host_os'] =~ /darwin/ && system('which brew > /dev/null')
+    begin
+      stdout, status = Open3.capture2('brew', '--prefix', 'openssl')
+      return stdout.strip if status.success? && Dir.exist?(stdout.strip)
+    rescue Errno::ENOENT
+      # brew not available
+    end
+  end
+
+  # Fallback to common paths
+  fallback_paths = %w[
+    /usr/local/opt/openssl@3
+    /usr/local/opt/openssl
+    /usr/local/ssl
+    /usr/lib/ssl
+    /opt/homebrew/opt/openssl@3
+    /opt/homebrew/opt/openssl
+    /opt/openssl
+  ]
+
+  fallback_paths.each do |path|
+    return path if Dir.exist?(path)
+  end
+
+  raise 'OpenSSL directory not found. Please set OPENSSL_DIR environment variable.'
 end
 
 # Set flags
-cxxflags = "-std=c++20 -DHAVE_SSL=1 -DHAVE_POSTGRESQL=1"
+cxxflags = '-std=c++20 -DHAVE_SSL=1 -DHAVE_POSTGRESQL=1'
 pg_includes_dir = fetch_pg_includes
 openssl_dir = fetch_openssl_dir
 
@@ -38,4 +68,4 @@ $CXXFLAGS += " #{cxxflags}"
 $CPPFLAGS += " #{cppflags}"
 $LDFLAGS  += " #{ldflags}"
 
-create_makefile("quickfix")
+create_makefile('quickfix')
