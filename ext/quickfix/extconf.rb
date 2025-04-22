@@ -9,13 +9,25 @@ def fetch_pg_includes
   stdout.strip
 end
 
+def fetch_openssl_dir
+  begin
+    stdout, _ = Open3.capture2("pkg-config --variable=prefix openssl")
+    stdout.strip
+  rescue Errno::ENOENT
+    stdout, _ = Open3.capture2("brew --prefix openssl")
+    stdout.strip
+  end
+end
+
 # Set flags
 cxxflags = "-std=c++20 -DHAVE_SSL=1 -DHAVE_POSTGRESQL=1"
 pg_includes_dir = fetch_pg_includes
+openssl_dir = fetch_openssl_dir
 
-cppflags = "-I#{pg_includes_dir}"
-ldflags = "-lssl -lcrypto"
+cppflags = "-I#{openssl_dir}/include -I#{pg_includes_dir}"
+ldflags = "-L#{openssl_dir}/lib -lssl -lcrypto"
 
+puts "Using OpenSSL from: #{openssl_dir}"
 puts "Using PostgreSQL from: #{pg_includes_dir}"
 puts "CXXFLAGS: #{cxxflags}"
 puts "CPPFLAGS: #{cppflags}"
