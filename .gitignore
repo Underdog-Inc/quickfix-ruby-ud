@@ -1,6 +1,8 @@
 *~
 *.gz
 *.zip
-/quickfix
+quickfix/
 .DS_STORE
-.idea
+.idea/
+tmp/
+vendor/
