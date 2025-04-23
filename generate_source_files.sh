@@ -73,4 +73,4 @@ install_coreutils
 build_quickfix_source
 copy_source_files
 rm -rf quickfix
-echo "Done...!"
+echo "Done!"
