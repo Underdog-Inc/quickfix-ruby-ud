@@ -16,7 +16,6 @@ PLATFORMS = %w[
   aarch64-linux
 ]
 
-
 PLATFORMS.each do |plat|
   task "gem:#{plat}" do
       RakeCompilerDock.set_ruby_cc_version("~> 3.3")

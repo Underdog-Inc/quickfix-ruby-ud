@@ -1,6 +1,5 @@
 require 'mkmf'
 require 'open3'
-require 'rake/extensiontask'
 
 dir_config('quickfix', ['.'], '.')
 
@@ -75,5 +74,3 @@ $CPPFLAGS += " #{cppflags}"
 $LDFLAGS  += " #{ldflags}"
 
 create_makefile('quickfix')
-
-Rake::ExtensionTask.new('quickfix')
