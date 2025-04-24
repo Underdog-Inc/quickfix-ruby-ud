@@ -7,3 +7,5 @@
 /tmp
 /vendor
 pkg/
+*.bundle
+*.so
