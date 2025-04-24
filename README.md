@@ -3,6 +3,8 @@
 This repo builds the quickfix_ruby_ud gem and precompiles native extensions for `aarch64-linux` and `x86_64-linux` 
 platforms.
 
+See the hosted version here: https://rubygems.org/gems/quickfix_ruby_ud
+
 # Creating a new version
 
 1. Increment the version number in `quickfix_ruby_ud.gemspec`.

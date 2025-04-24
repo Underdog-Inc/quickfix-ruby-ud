@@ -6,3 +6,4 @@ quickfix/
 .idea/
 tmp/
 vendor/
+pkg/

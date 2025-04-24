@@ -16,9 +16,10 @@ PLATFORMS = %w[
   aarch64-linux
 ]
 
-RakeCompilerDock.set_ruby_cc_version("~> 3.3")
+
 PLATFORMS.each do |plat|
   task "gem:#{plat}" do
+      RakeCompilerDock.set_ruby_cc_version("~> 3.3")
       RakeCompilerDock.sh "bundle --local && rake native:#{plat} gem", platform: plat 
   end
 end

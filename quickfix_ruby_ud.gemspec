@@ -2,8 +2,8 @@
 
 Gem::Specification.new do |s|
   s.name        = 'quickfix_ruby_ud'
-  s.version     = '2.0.7'
-  s.date        = '2025-04-21'
+  s.version     = '2.0.8'
+  s.date        = '2025-04-23'
   s.summary     = 'QuickFIX'
   s.description = 'FIX (Financial Information eXchange) protocol implementation'
   s.authors     = ['Oren Miller', 'Tom Kerr']
@@ -15,4 +15,5 @@ Gem::Specification.new do |s|
   s.licenses    = 'Apache Style'
   s.rdoc_options = ['--exclude=ext']
   s.required_ruby_version = '>= 3.3.0'
+  s.require_paths = %w[lib lib/3.3]
 end

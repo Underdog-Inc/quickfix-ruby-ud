@@ -16,6 +16,9 @@ RCD_IMAGE=rake-dock-aarch64-linux rake gem:aarch64-linux --trace
 echo "Building x86_64-linux..."
 RCD_IMAGE=rake-dock-x86_64-linux rake gem:x86_64-linux --trace
 
+echo "Building for the host target..."
+rake native gem
+
 echo "Cleaning up..."
 rake clean
 
