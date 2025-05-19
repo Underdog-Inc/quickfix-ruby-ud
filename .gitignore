@@ -3,4 +3,9 @@
 *.zip
 /quickfix
 .DS_STORE
-.idea
+.idea/
+/tmp
+/vendor
+pkg/
+*.bundle
+*.so
