@@ -412441,4 +412441,47 @@ class PayManagementRequestAck < Message
 		getHeader().setField( Quickfix::MsgType.new("DZ") )
 	end
 end
+
+class MarketSettlementReport < Message
+	def initialize
+		super
+		getHeader().setField( Quickfix::MsgType.new("UMS") )
+	end
+
+	class NoMarketSettlementPartyIDs < Quickfix::Group
+		def initialize
+			order = Quickfix::IntArray.new(7)
+			order[0] = 20109
+			order[1] = 20110
+			order[2] = 704
+			order[3] = 705
+			order[4] = 1703
+			order[5] = 136
+			order[6] = 0
+			super(20108, 20109, order)
+		end
+
+		class NoCollateralAmounts < Quickfix::Group
+			def initialize
+				order = Quickfix::IntArray.new(3)
+				order[0] = 1704
+				order[1] = 1705
+				order[2] = 0
+				super(1703, 1704, order)
+			end
+		end
+
+		class NoMiscFees < Quickfix::Group
+			def initialize
+				order = Quickfix::IntArray.new(5)
+				order[0] = 137
+				order[1] = 138
+				order[2] = 139
+				order[3] = 891
+				order[4] = 0
+				super(136, 137, order)
+			end
+		end
+	end
+end
 end
