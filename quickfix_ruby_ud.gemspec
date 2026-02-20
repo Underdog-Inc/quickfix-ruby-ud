@@ -2,8 +2,8 @@
 
 Gem::Specification.new do |s|
   s.name        = 'quickfix_ruby_ud'
-  s.version     = '2.0.9'
-  s.date        = '2026-02-07'
+  s.version     = '2.0.10'
+  s.date        = '2026-02-20'
   s.summary     = 'QuickFIX'
   s.description = 'FIX (Financial Information eXchange) protocol implementation'
   s.authors     = ['Oren Miller', 'Tom Kerr']
