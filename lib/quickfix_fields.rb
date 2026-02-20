@@ -79390,4 +79390,121 @@ module Quickfix
 		end
 	end
 
+	class SettlementPrice < Quickfix::DoubleField
+		def SettlementPrice.field
+			return 730
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(730)
+			else
+				super(730, data)
+			end
+		end
+	end
+
+	class NoCollateralAmountChanges < Quickfix::IntField
+		def NoCollateralAmountChanges.field
+			return 1703
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(1703)
+			else
+				super(1703, data)
+			end
+		end
+	end
+
+	class CollateralAmountChange < Quickfix::DoubleField
+		def CollateralAmountChange.field
+			return 1704
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(1704)
+			else
+				super(1704, data)
+			end
+		end
+	end
+
+	class MarketSettlementReportID < Quickfix::StringField
+		def MarketSettlementReportID.field
+			return 20105
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(20105)
+			else
+				super(20105, data)
+			end
+		end
+	end
+
+	class TotNumMarketSettlementReports < Quickfix::IntField
+		def TotNumMarketSettlementReports.field
+			return 20106
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(20106)
+			else
+				super(20106, data)
+			end
+		end
+	end
+
+	class MarketResult < Quickfix::StringField
+		def MarketResult.field
+			return 20107
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(20107)
+			else
+				super(20107, data)
+			end
+		end
+	end
+
+	class NoMarketSettlementPartyIDs < Quickfix::IntField
+		def NoMarketSettlementPartyIDs.field
+			return 20108
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(20108)
+			else
+				super(20108, data)
+			end
+		end
+	end
+
+	class MarketSettlementPartyID < Quickfix::StringField
+		def MarketSettlementPartyID.field
+			return 20109
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(20109)
+			else
+				super(20109, data)
+			end
+		end
+	end
+
+	class MarketSettlementPartyRole < Quickfix::IntField
+		def MarketSettlementPartyRole.field
+			return 20110
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(20110)
+			else
+				super(20110, data)
+			end
+		end
+	end
+
 end
