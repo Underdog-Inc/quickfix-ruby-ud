@@ -5,9 +5,9 @@ dir_config('quickfix', ['.'], '.')
 
 # Helpers to fetch config values
 def fetch_pg_include_dir
-  return ENV['PG_INCLUDE_DIR'] if ENV['PG_INCLUDE_DIR'] && Dir.exist?(ENV['PG_INCLUDE_DIR'])
-  
-  stdout, _ = Open3.capture2('pg_config --includedir')
+  pgconfig = with_config('pg-config') || with_config('pg_config') || find_executable('pg_config')
+
+  stdout, _ = Open3.capture2("#{pgconfig} --includedir")
   stdout.strip
 end
 
