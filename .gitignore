@@ -9,3 +9,22 @@
 pkg/
 *.bundle
 *.so
+
+#ignore .vscode files
+.vscode
+
+# Ignore AI-generated output files
+ai_output/
+context7.json
+ai/scratch/
+.agents/scratch/
+.agents/memory
+.claude/scratch/
+.claude/memory
+.claude/tasks
+.claude/worktrees
+.worktrees/
+.claude/jira.local.yaml
+
+# Claude Code local settings (user-specific)
+.claude/settings.local.json
