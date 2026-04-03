@@ -79507,4 +79507,17 @@ module Quickfix
 		end
 	end
 
+	class AcceptQuoteStatus < Quickfix::IntField
+		def AcceptQuoteStatus.field
+			return 21025
+		end
+		def initialize(data = nil)
+			if( data == nil )
+				super(21025)
+			else
+				super(21025, data)
+			end
+		end
+	end
+
 end

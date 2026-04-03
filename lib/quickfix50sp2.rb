@@ -412484,4 +412484,41 @@ class MarketSettlementReport < Message
 		end
 	end
 end
+
+class AcceptQuote < Message
+	def initialize
+		super
+		getHeader().setField( Quickfix::MsgType.new("UA") )
+	end
+
+	class NoPartyIDs < Quickfix::Group
+		def initialize
+			order = Quickfix::IntArray.new(6)
+			order[0] = 448
+			order[1] = 447
+			order[2] = 452
+			order[3] = 2376
+			order[4] = 802
+			order[5] = 0
+			super(453, 448, order)
+		end
+
+		class NoPartySubIDs < Quickfix::Group
+			def initialize
+				order = Quickfix::IntArray.new(3)
+				order[0] = 523
+				order[1] = 803
+				order[2] = 0
+				super(802, 523, order)
+			end
+		end
+	end
+end
+
+class AcceptQuoteStatus < Message
+	def initialize
+		super
+		getHeader().setField( Quickfix::MsgType.new("UC") )
+	end
+end
 end
